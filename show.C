@@ -13,7 +13,7 @@ void show(TString file = "test"){
 
     const Double_t MIN = 0;         //keV
     const Double_t MAX = 20000;     //keV
-    const Double_t BIN_WIDTH 100;   //keV
+    const Double_t BIN_WIDTH = 100;   //keV
 
 	auto hist = new TH1D("hist","hist",MAX/BIN_WIDTH+1,MIN-BIN_WIDTH/2.0,MAX+BIN_WIDTH/2.0);
     while(ifs >> val >> val2){
