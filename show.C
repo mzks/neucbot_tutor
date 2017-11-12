@@ -1,5 +1,11 @@
-void show(TString file = "./iron_u.dat"){
+// ------------------------- //
+// show.C -- root macro
+// Author: Mizukoshi Keita
+// 2017.Nov.12
+// ------------------------- //
 
+
+void show(TString file = "./iron_u.dat"){
     auto C = new TCanvas();
 
 	string  	buf;
@@ -7,10 +13,13 @@ void show(TString file = "./iron_u.dat"){
 	ifstream ifs(file);
 
     while(true){
-		getline(ifs,buf);
+		if(!getline(ifs,buf)){
+            std::cerr << "No such file" << std::endl;
+            return;
+        }
         if(buf.size()>10)if(buf.substr(0,10) == "# Integral")break;
 	}
-
+    
     const Double_t MIN = 0;         //keV
     const Double_t MAX = 20000;     //keV
     const Double_t BIN_WIDTH = 100;   //keV
