@@ -1,4 +1,4 @@
-void show(TString file = "test"){
+void show(TString file = "./iron_u.dat"){
 
     auto C = new TCanvas();
 
@@ -15,7 +15,7 @@ void show(TString file = "test"){
     const Double_t MAX = 20000;     //keV
     const Double_t BIN_WIDTH = 100;   //keV
 
-	auto hist = new TH1D("hist","hist",MAX/BIN_WIDTH+1,MIN-BIN_WIDTH/2.0,MAX+BIN_WIDTH/2.0);
+	auto hist = new TH1D(file,"hist",MAX/BIN_WIDTH+1,MIN-BIN_WIDTH/2.0,MAX+BIN_WIDTH/2.0);
     while(ifs >> val >> val2){
         hist->Fill(val,val2);
     }
@@ -24,5 +24,9 @@ void show(TString file = "test"){
     hist->SetMarkerStyle(kOpenCircle);
     hist->SetLineStyle(0);
 	hist->SetTitle(";Energy(keV);Counts /decay /100keV");
+    hist->SetStats(0);
 	hist->Draw("hist");
+
+    C->BuildLegend();
+    
 }
