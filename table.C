@@ -13,12 +13,14 @@ void table(TString file = "iron_u.dat"){
     ofstream ofs(output);
 
     while(true){
-		getline(ifs,buf);
+		if(!getline(ifs,buf)){
+            std::cout << "No such file" << std::endl;
+            return;
+        }
         if(buf.size()>10)if(buf.substr(0,10) == "# Integral")break;
 	}
 
     while(ifs >> val >> val2){
         ofs << val << " " << val2 << std::endl;
     }
-
 }
